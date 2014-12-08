@@ -1,0 +1,266 @@
+#include <iostream>
+#include <iomanip>
+#include <string>
+#include "Person.h"
+#include "Student.h"
+#include "Teacher.h"
+#include "ScheduledCourses.h"
+
+using namespace std;
+
+
+
+
+void main()
+{
+	
+	    ScheduledCourses courseclassthing;
+
+	char sort,answer; string fname, lname, ID, password,passcheck, pick; int age,count;char gender;string phone,email;char FOS;
+
+	cout << "Please enter your ID : ";
+	cin >> ID;
+	if(ID == "4")
+	{
+		fname="Austin";lname="Wilson";password="pudding";age=19;gender ='M';phone="9758010";email="austin.Wilson11@yahoo.com";
+	}
+	cout << "Welcome " << fname << " " << lname << endl << "Please enter your password to continue : ";
+	cin >> passcheck;
+	while(passcheck != password)
+	{
+		cout << "Invalid password try again : ";
+		cin >> passcheck;
+	}
+	do
+	{
+	cout << "Are you a student or a teacher?" << endl << "S/T : ";
+	cin >> sort;
+	sort=toupper(sort);
+	if(sort != 'S' && sort != 'T'){cout <<endl << "please enter S/T :" ;}
+	}while(sort != 'S' && sort != 'T');
+	double forcedFOS;
+	if(sort == 'S')
+	{
+				cout << "Pick a Field of study..." << endl << "C for CulinaryAstrology, S for SecretService, A for AlcoholBiology : ";
+				cin >> FOS;
+				cout << endl;
+				FOS=toupper(FOS);
+				Student user(fname,lname,ID,password,age,gender,phone,email,FOS);
+				cout << "Would you like to register for classes" << endl << "Y/N : ";
+				cin >> answer;
+				if((toupper(answer))=='Y')
+				{
+
+					user.Eligibility();
+					if(user.isEligible=true)
+					{
+						int check=0;
+						switch(FOS)
+						{
+							case 'C':
+								count=0;
+								courseclassthing.classOne=/*Astrological culinary physics*/"ACP_330";courseclassthing.classTwo=/*Astrological Botany and Dehydration*/"ABD_210";courseclassthing.classThree=/*Extraterrestrial sociology*/"ETS_101";courseclassthing.classFour=/*math*/"MATH_9001";courseclassthing.classFive=/*Martian Language Arts*/"LANG_750";courseclassthing.classSix=/*Science*/"SCI_356";
+								do
+								{
+									count++;	
+									do
+									{
+										system("cls");
+										cout << endl << "Your class options are choices for your field of study are..." << endl << endl << setw(15) << left << courseclassthing.classOne << "*Astrological culinary physics " << endl << endl << setw(15) << left << courseclassthing.classTwo << "*Astrological Botany and Dehydration "<< endl << endl << setw(15) << left << courseclassthing.classThree << "*Extraterrestrial sociology " << courseclassthing.classThree << endl << endl << setw(15) << left << courseclassthing.classFour << "*Math " << endl << endl << setw(15) << left << courseclassthing.classFive << "*Martian Language Arts " << endl << endl << setw(15) << left << courseclassthing.classSix << "*Science " << endl << endl<< "**CLASS CODE MUST BE TYPED EXACTLY AS SHOWN!** " << endl;;
+										cin >> pick;
+										check=user.checkPick(pick);
+									}while(pick != courseclassthing.classOne && pick != courseclassthing.classTwo && pick != courseclassthing.classThree && pick != courseclassthing.classFour && pick != courseclassthing.classFive || check == 1);
+								
+									user.Enroll(pick);
+									cout << endl;
+										if(count == 1)
+										{
+											courseclassthing.RoomGenOne(pick);
+											courseclassthing.TeacherPicker();
+											courseclassthing.DisplayTeacher(pick);
+										}else if(count == 2)
+										{
+											courseclassthing.RoomGenTwo(pick);
+											courseclassthing.TeacherPicker();
+											courseclassthing.DisplayTeacher(pick);
+										}
+									cout << "Would you like to enroll in another class?   Y/N : ";
+									cin >> answer;
+								}while((toupper(answer) != 'N')&& (count != 2));
+								if(count ==2){cout << "You have already scheduled two classes! ";}
+								break;
+							case 'S':
+								count=0;
+								courseclassthing.classOne=/*Womanizing*/"HUM_410";courseclassthing.classTwo=/*History of the Tactical Turtleneck*/"HST_213";courseclassthing.classThree=/*Fort Engineering*/"ENG_512";courseclassthing.classFour=/*math*/"MATH_9001";courseclassthing.classFive=/*Martian Language Arts*/"LANG_750";courseclassthing.classSix=/*Science*/"SCI_356";
+								do
+								{
+									count++;
+									do
+									{
+										system("cls");
+										cout << endl << "Your class options are choices for your field of study are..." << endl << endl << setw(15) << left << courseclassthing.classOne << "*Womanizing " << endl << endl << setw(15) << left << courseclassthing.classTwo << "*History of the Tactical Turtleneck " << endl << endl << setw(15) << left << courseclassthing.classThree << "*Fort Engineering " << endl << endl << setw(15) << left << courseclassthing.classFour << "*Math " << endl << endl << setw(15) << left << courseclassthing.classFive << "*Martian Language Arts " << endl << endl << setw(15) << left << courseclassthing.classSix << "*Science " << endl << endl << "**CLASS CODE MUST BE TYPED EXACTLY AS SHOWN!** " << endl;
+										cin >> pick;
+										check=user.checkPick(pick);
+									}while(pick != courseclassthing.classOne && pick != courseclassthing.classTwo && pick != courseclassthing.classThree && pick != courseclassthing.classFour && pick != courseclassthing.classFive || check == 1);
+									user.Enroll(pick);
+									cout << endl;
+										if(count == 1)
+										{
+											courseclassthing.RoomGenOne(pick);
+											courseclassthing.TeacherPicker();
+											courseclassthing.DisplayTeacher(pick);
+										}else if(count == 2)
+										{
+											courseclassthing.RoomGenTwo(pick);
+											courseclassthing.TeacherPicker();
+											courseclassthing.DisplayTeacher(pick);
+										}
+									cout << "Would you like to enroll in another class?   Y/N ";
+									cin >> answer;
+								}while((toupper(answer) != 'N')&& (count != 2));
+								if(count ==2){cout << "You have already scheduled two classes! ";}
+								break;
+							case 'A':
+								count=0;
+								courseclassthing.classOne=/*History of the Bloody Mary*/"HIS_410";courseclassthing.classTwo=/*Tasting*/"TAS_101";courseclassthing.classThree=/*Distilling and Brewing*/"BIO_559";courseclassthing.classFour=/*math*/"MATH_9001";courseclassthing.classFive=/*Drunk Language Arts*/"LANG_732";courseclassthing.classSix=/*Science*/"SCI_356";
+								do
+								{
+									count++;
+									do
+									{
+										system("cls");
+										cout << endl << "Your class options are choices for your field of study are..." << endl << endl << setw(15) << left << courseclassthing.classOne << "*History of the Bloody Mary " << endl << endl << setw(15) << left << courseclassthing.classTwo << "*Tasting " << endl << endl << setw(15) << left << courseclassthing.classThree << "*Distilling and Brewing " << endl << endl << setw(15) << left << courseclassthing.classFour << "*Math " << endl << endl << setw(15) << left << courseclassthing.classFive << "*Drunk Language Arts " << endl << endl << setw(15) << left << courseclassthing.classSix << "*Science " << endl << endl<< "**CLASS CODE MUST BE TYPED EXACTLY AS SHOWN!** " << endl;;
+										cin >> pick;
+										check=user.checkPick(pick);
+									}while(pick != courseclassthing.classOne && pick != courseclassthing.classTwo && pick != courseclassthing.classThree && pick != courseclassthing.classFour && pick != courseclassthing.classFive || check == 1);
+									user.Enroll(pick);
+									cout << endl;
+										if(count == 1)
+										{
+											courseclassthing.RoomGenOne(pick);
+											courseclassthing.TeacherPicker();
+											courseclassthing.DisplayTeacher(pick);
+										}else if(count == 2)
+										{
+											courseclassthing.RoomGenTwo(pick);
+											courseclassthing.TeacherPicker();
+											courseclassthing.DisplayTeacher(pick);
+										}
+									cout << "Would you like to enroll in another class?   Y/N ";
+									cin >> answer;
+								}while((toupper(answer) != 'N')&& (count != 2));
+								if(count ==2){cout << "You have already scheduled two classes! ";}	
+								break;
+
+						}
+					}
+				}
+	}
+	else if(sort == 'T')
+	{
+				Teacher prof(fname,lname,ID,password,age,gender,phone,email);
+
+				forcedFOS=prof.assign();
+				int check=0;
+				if(forcedFOS == 1)
+				{
+								count=0;
+								courseclassthing.classOne=/*Astrological culinary physics*/"ACP_330";courseclassthing.classTwo=/*Astrological Botany and Dehydration*/"ABD_210";courseclassthing.classThree=/*Extraterrestrial sociology*/"ETS_101";courseclassthing.classFour=/*math*/"MATH_9001";courseclassthing.classFive=/*Martian Language Arts*/"LANG_750";courseclassthing.classSix=/*Science*/"SCI_356";
+								do
+								{
+									count++;	
+									do
+									{
+										system("cls");
+										cout << "Your designated field of study is Culinary Astrology."<< endl;
+										cout << endl << "Your class options are choices for your field of study are..." << endl << endl << setw(15) << left << courseclassthing.classOne << "*Astrological culinary physics " << endl << endl << setw(15) << left << courseclassthing.classTwo << "*Astrological Botany and Dehydration "<< endl << endl << setw(15) << left << courseclassthing.classThree << "*Extraterrestrial sociology " << courseclassthing.classThree << endl << endl << setw(15) << left << courseclassthing.classFour << "*Math " << endl << endl << setw(15) << left << courseclassthing.classFive << "*Martian Language Arts " << endl << endl << setw(15) << left << courseclassthing.classSix << "*Science " << endl << endl<< "**CLASS CODE MUST BE TYPED EXACTLY AS SHOWN!** " << endl;;
+										cin >> pick;
+										check=prof.checkPick(pick);
+									}while(pick != courseclassthing.classOne && pick != courseclassthing.classTwo && pick != courseclassthing.classThree && pick != courseclassthing.classFour && pick != courseclassthing.classFive || check == 1);
+								
+									prof.classes(pick);
+									cout << endl;
+										if(count == 1)
+										{
+											courseclassthing.RoomGenOne(pick);
+
+										}else if(count == 2)
+										{
+											courseclassthing.RoomGenTwo(pick);
+
+										}
+									cout << "Would you like to teach another class?   Y/N : ";
+									cin >> answer;
+								}while((toupper(answer) != 'N')&& (count != 2));
+								if(count ==2){cout << "You already scheduled two classes! ";}
+				}
+				else if(forcedFOS == 2)
+				{
+								count=0;
+								courseclassthing.classOne=/*Womanizing*/"HUM_410";courseclassthing.classTwo=/*History of the Tactical Turtleneck*/"HST_213";courseclassthing.classThree=/*Fort Engineering*/"ENG_512";courseclassthing.classFour=/*math*/"MATH_9001";courseclassthing.classFive=/*Martian Language Arts*/"LANG_750";courseclassthing.classSix=/*Science*/"SCI_356";
+								do
+								{
+									count++;
+									do
+									{
+										system("cls");
+										cout << "Your designated field of study is Secret Service."<< endl;
+										cout << endl << "Your class options are choices for your field of study are..." << endl << endl << setw(15) << left << courseclassthing.classOne << "*Womanizing " << endl << endl << setw(15) << left << courseclassthing.classTwo << "*History of the Tactical Turtleneck " << endl << endl << setw(15) << left << courseclassthing.classThree << "*Fort Engineering " << endl << endl << setw(15) << left << courseclassthing.classFour << "*Math " << endl << endl << setw(15) << left << courseclassthing.classFive << "*Martian Language Arts " << endl << endl << setw(15) << left << courseclassthing.classSix << "*Science " << endl << endl << "**CLASS CODE MUST BE TYPED EXACTLY AS SHOWN!** " << endl;
+										cin >> pick;
+										check=prof.checkPick(pick);
+									}while(pick != courseclassthing.classOne && pick != courseclassthing.classTwo && pick != courseclassthing.classThree && pick != courseclassthing.classFour && pick != courseclassthing.classFive || check == 1);
+								
+									prof.classes(pick);
+									cout << endl;
+										if(count == 1)
+										{
+											courseclassthing.RoomGenOne(pick);
+
+										}else if(count == 2)
+										{
+											courseclassthing.RoomGenTwo(pick);
+
+										}
+									cout << "Would you like to teach another class?   Y/N : ";
+									cin >> answer;
+								}while((toupper(answer) != 'N')&& (count != 2));
+								if(count ==2){cout << "You already scheduled two classes! ";}
+				}
+				else if(forcedFOS== 3)
+				{
+								count=0;
+								courseclassthing.classOne=/*History of the Bloody Mary*/"HIS_410";courseclassthing.classTwo=/*Tasting*/"TAS_101";courseclassthing.classThree=/*Distilling and Brewing*/"BIO_559";courseclassthing.classFour=/*math*/"MATH_9001";courseclassthing.classFive=/*Drunk Language Arts*/"LANG_732";courseclassthing.classSix=/*Science*/"SCI_356";
+								do
+								{
+									count++;
+									do
+									{
+										system("cls");
+										cout << "Your designated field of study is Alcohol Biology."<< endl;
+										cout << endl << "Your class options are choices for your field of study are..." << endl << endl << setw(15) << left << courseclassthing.classOne << "*History of the Bloody Mary " << endl << endl << setw(15) << left << courseclassthing.classTwo << "*Tasting " << endl << endl << setw(15) << left << courseclassthing.classThree << "*Distilling and Brewing " << endl << endl << setw(15) << left << courseclassthing.classFour << "*Math " << endl << endl << setw(15) << left << courseclassthing.classFive << "*Drunk Language Arts " << endl << endl << setw(15) << left << courseclassthing.classSix << "*Science " << endl << endl<< "**CLASS CODE MUST BE TYPED EXACTLY AS SHOWN!** " << endl;;
+										cin >> pick;
+										check=prof.checkPick(pick);
+									}while(pick != courseclassthing.classOne && pick != courseclassthing.classTwo && pick != courseclassthing.classThree && pick != courseclassthing.classFour && pick != courseclassthing.classFive || check == 1);
+								
+									prof.classes(pick);
+									cout << endl;
+										if(count == 1)
+										{
+											courseclassthing.RoomGenOne(pick);
+
+										}else if(count == 2)
+										{
+											courseclassthing.RoomGenTwo(pick);
+
+										}
+									cout << "Would you like to teach another class?   Y/N : ";
+									cin >> answer;
+								}while((toupper(answer) != 'N')&& (count != 2));
+								if(count ==2){cout << "You already scheduled two classes! ";}
+				}
+		
+	
+	}
+
+	system("pause");
+};
