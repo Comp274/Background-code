@@ -13,4 +13,5 @@ void ScheduledCourses::DisplayTeacher(string classname)
 		}
 		MORE measages
 		
+				return "Your office hours for this session are 11am to 4pm on " + officeHours + ".";
 		
