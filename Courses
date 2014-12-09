@@ -1,0 +1,11 @@
+
+public class Courses 
+{
+
+	public String classOne;
+	public String classTwo;
+	public String classThree;
+	public String classFour;
+	public String classFive;
+	public String classSix;
+}
