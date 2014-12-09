@@ -2,6 +2,8 @@ public class Teacher extends Person
 {
 	public String teachOne, teachTwo;
 	public String department;
+	public String officeHours;
+	private int random;
 	
 	public Teacher(String First, String Last, String ID, String Password, int Age, char Gender, String Phone,String Email)
 	{
@@ -10,54 +12,46 @@ public class Teacher extends Person
 		teachTwo = "needs enrolled";
 	}
 	
-	public String department ()
+	public void department()
 	{
-		int random,teach;
-		random = (int) (Math.random() * 3 + 1);
+		random =(int) (Math.random() * 3 + 1);
 		if (random == 0)
 		{
 			department = "CA";
-			return department;
-
 		}
 		else if (random == 1)
 		{
 			department = "SS";
-
-			return department;
 		}
 		else
 		{
 			department = "AB";
-			return department;
 		}
 	}
-	public String Hours ()
+	
+	public void Hours()
 	{
-		int random;
-		String officeHours;
 		random = (int) (Math.random() * 5 + 1);
 		
-		if(random==1)
+		if(random == 1)
 		{
-			officeHours="Monday";
+			officeHours = "Monday";
 		}
-		else if(random==2)
+		else if(random == 2)
 		{
-			officeHours="Tuesday";
+			officeHours = "Tuesday";
 		}
-		else if(random==3)
+		else if(random == 3)
 		{
-			officeHours="Wednesday";
+			officeHours = "Wednesday";
 		}
-		else if(random==4)
+		else if(random == 4)
 		{
-			officeHours="Thursday";
+			officeHours = "Thursday";
 		}
 		else
 		{
-			officeHours="Friday";
+			officeHours = "Friday";
 		}
-		return "Your office hours for this session are 11am to 4pm on " + officeHours + ".";
 	}
 }
