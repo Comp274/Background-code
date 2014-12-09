@@ -1,11 +1,12 @@
 
 public class Person 
 {
-	private String Firstname, Lastname, id, password;
-	private int age;char gender;
-	private String addressOne, addressTwo, city, state, zip;
-	private String phone, email;
-	private Boolean hasInsurance, isActive;
+	public String Firstname, Lastname, id, password;
+	public int age;
+	public char gender;
+	public String addressOne, addressTwo, city, state, zip;
+	public String phone, email;
+	public Boolean hasInsurance, isActive;
 		
 	public Person(String First, String Last, String ID, String Password, int Age, char Gender, String Phone, String Email)
 	{
