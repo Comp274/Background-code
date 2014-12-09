@@ -1,0 +1,70 @@
+
+public class Student extends Person
+{
+	private double GPA;
+	private String enrolledOne, enrolledTwo, pick, result,GPAresult;
+	public String FOS;
+	public boolean isEligible;
+	
+	public Student(String First, String Last, String ID, String Password, int Age, char Gender, String Phone, String Email,String a)
+	{
+		super(First,Last,ID,Password,Age,Gender,Phone,Email);
+		FOS=a; 
+		GPA=3;
+		enrolledOne="needsenrolled";
+		enrolledTwo="needsenrolled";
+	}
+	
+	public String Enroll(String pick)
+	{
+		if (enrolledOne == "needsenrolled")
+		{
+			enrolledOne=pick;
+			result ="Enrolled successfully in " + pick + " for class one";
+			return result;
+
+		}
+		else if (enrolledTwo == "needsenrolled")
+		{
+
+			enrolledTwo=pick;
+			result ="Enrolled successfully in " + pick + " for class two";
+			return result;
+		}
+		else
+		{
+			result = "You have enough classes";
+			return result;
+		}
+	}
+	
+	public String Eligibility()
+	{
+		GPA= Math.random() * 4 + 1;
+		
+		if (GPA <1.0)
+		{	
+			GPAresult = "Your GPA is " + GPA + "....You cannot schedule classes.";
+			return GPAresult;
+		}
+		else
+		{
+			GPAresult = "Your GPA is " + GPA;
+			isEligible= true;
+			return GPAresult;
+		}
+	}
+	
+	public int checkPick(String pick)
+	{
+		if(pick == enrolledOne)
+		{
+
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
+}
