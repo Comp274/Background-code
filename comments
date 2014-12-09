@@ -1,0 +1,16 @@
+void ScheduledCourses::DisplayTeacher(string classname)
+	{
+		cout << "The Professor for " << classname << "is " << teacherset << endl;
+	}
+	NEED meesage on GUI
+	
+			if(hasComputers == true)
+		{
+						cout << endl << "Your class of " << classname << ", will be in classroom " << roomNumber << endl << "Class starts at 6pm " << classDay << " and runs through 9pm." << endl << "Max seats is " << maxSeats << ", and the room does have computers." << endl;
+		}else
+		{
+				cout  << endl <<"Your class of " << classname << ", will be in classroom " << roomNumber << endl << "Class starts at 6pm " << classDay << " and runs through 9pm." << endl << "Max seats is " << maxSeats << ", and the room does not have computers." << endl;
+		}
+		MORE measages
+		
+		
