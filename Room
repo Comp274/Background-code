@@ -1,0 +1,9 @@
+public class Room  
+{
+	public boolean classOnehasComputers;
+	public int classOnemaxSeats;
+	public int classOneroomNumber;
+	public boolean classTwohasComputers;
+	public int classTwomaxSeats;
+	public int classTworoomNumber;
+}
