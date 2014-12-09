@@ -1,9 +1,55 @@
-public class Room  
+public class Room  extends Course
 {
-	public boolean classOnehasComputers;
-	public int classOnemaxSeats;
-	public int classOneroomNumber;
-	public boolean classTwohasComputers;
-	public int classTwomaxSeats;
-	public int classTworoomNumber;
+	public boolean hasComputers;
+	public int maxSeats;
+	public int roomNumber;
+	private boolean needsComputers;
+	
+	public void RoomGen(String classname)
+	{
+		double random;
+		if(classname == "ETS_101"||classname == "LANG_750"||classname == "SCI_356"||classname == "HUM_410"||classname == "HST_213"||classname == "ENG_512"||classname == "LANG_732"||classname == "HIS_410")
+		{
+			needsComputers = true;
+		}
+		else
+		{
+			needsComputers = false;
+		};
+
+		if(needsComputers == true)
+		{
+			random = Math.random() * 2 + 1;
+			if(random == 1)
+			{
+				roomNumber=1;
+				maxSeats=25;
+				hasComputers=true;
+			}
+			else
+			{
+				roomNumber=3;
+				maxSeats=10;
+				hasComputers=true;
+			}
+
+		}
+		else
+		{
+			random = Math.random() * 2 + 1;
+			if(random == 1)
+			{
+				roomNumber=2;
+				maxSeats=12;
+				hasComputers=false;
+			}
+			else
+			{
+				roomNumber=4;
+				maxSeats=30;
+				hasComputers=false;
+			}
+		}
+		
+	}
 }
