@@ -1,8 +1,8 @@
 
 public class Student extends Person
 {
-	private double GPA;
-	private String enrolledOne, enrolledTwo, pick, result,GPAresult;
+	public double GPA;
+	public String enrolledOne, enrolledTwo, enrollResult,GPAresult;
 	public String FOS;
 	public boolean isEligible;
 	
@@ -15,43 +15,38 @@ public class Student extends Person
 		enrolledTwo="needsenrolled";
 	}
 	
-	public String Enroll(String pick)
+	public void Enroll(String pick)
 	{
 		if (enrolledOne == "needsenrolled")
 		{
 			enrolledOne=pick;
-			result ="Enrolled successfully in " + pick + " for class one";
-			return result;
+			enrollResult ="Enrolled successfully in " + pick + " for class one";
 
 		}
 		else if (enrolledTwo == "needsenrolled")
 		{
 
 			enrolledTwo=pick;
-			result ="Enrolled successfully in " + pick + " for class two";
-			return result;
+			enrollResult ="Enrolled successfully in " + pick + " for class two";
 		}
 		else
 		{
-			result = "You have enough classes";
-			return result;
+			enrollResult = "You have enough classes";
 		}
 	}
 	
-	public String Eligibility()
+	public void Eligibility()
 	{
 		GPA= Math.random() * 4 + 1;
 		
 		if (GPA <1.0)
 		{	
 			GPAresult = "Your GPA is " + GPA + "....You cannot schedule classes.";
-			return GPAresult;
 		}
 		else
 		{
 			GPAresult = "Your GPA is " + GPA;
 			isEligible= true;
-			return GPAresult;
 		}
 	}
 	
