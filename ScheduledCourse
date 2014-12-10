@@ -1,5 +1,8 @@
 
 public class ScheduledCourse
 {
-	//Course CourseOne = new Course;
+	Course course = new Course();
+	Room room = new Room();
+	
+	
 }
