@@ -1,0 +1,454 @@
+
+import java.awt.*;
+
+import javax.swing.*;
+
+import java.awt.event.*;
+
+public class GUI extends JFrame
+{
+	JRadioButton Culinary, Secret, Alcohol, acp, abd, ets, math, lang, sci, hum, hist, eng, hist2, tas, bio, lang2;
+	JTextField firstName, lastName,ID, Password, Age, Phone, Email;
+	JLabel lblIn, lblOut;
+	ButtonGroup fieldgroup, culgroup, secgroup, alcgroup;
+	JPanel upper, lower, left, right;
+	
+	public void GUI()
+	{
+		//fields of study
+		Culinary = new JRadioButton ("CulinaryAstrology");
+		Secret = new JRadioButton ("SecretService");
+		Alcohol = new JRadioButton ("AlchoholBiology");
+		
+		//repeating classes
+		math = new JRadioButton("MATH_9001  Math");
+		lang = new JRadioButton("LANG_750  Martian Language Arts");
+		sci = new JRadioButton("SCI_356  Science");
+		
+		//classes for culinary
+		acp = new JRadioButton("ACP_330  Astrological culinary physics");
+		abd = new JRadioButton("ABD_210  Astrological botany and dehydration");
+		ets = new JRadioButton("ETS_101  Extraterrestrial sociology");
+		
+		//classes for secret
+		hum = new JRadioButton("HUM_410  Womanizing");
+		hist = new JRadioButton("HIST_213  History of the Tactical Turtleneck");
+		eng = new JRadioButton("ENG_512  Fort Engineering");
+		
+		//classes for alcohol
+		hist2 = new JRadioButton("HIST_410  History of the Bloody Mary");
+		tas = new JRadioButton("TAS_101  Tasting");
+		bio = new JRadioButton("BIO_559  Distilling and Brewing");
+		lang2 = new JRadioButton("LANG_732  Drunk Language Arts");
+		
+		RadioButtonHandler bh = new RadioButtonHandler();
+		
+		Culinary.addItemListener(bh);
+		Secret.addItemListener(bh);
+		Alcohol.addItemListener(bh);
+		
+		math.addItemListener(bh);
+		lang.addItemListener(bh);
+		sci.addItemListener(bh);
+		
+		acp.addItemListener(bh);
+		abd.addItemListener(bh);
+		ets.addItemListener(bh);
+		
+		hum.addItemListener(bh);
+		hist.addItemListener(bh);
+		eng.addItemListener(bh);
+		
+		hist2.addItemListener(bh);
+		tas.addItemListener(bh);
+		bio.addItemListener(bh);
+		lang2.addItemListener(bh);
+		
+		//field and class groups
+		fieldgroup = new ButtonGroup();
+		culgroup = new ButtonGroup();
+		secgroup = new ButtonGroup();
+		alcgroup = new ButtonGroup();
+		
+		
+		firstName = new JTextField(10);
+		TextFieldHandler first = new TextFieldHandler();
+		firstName.addActionListener(first);
+		
+		lastName = new JTextField(10);
+		TextFieldHandler last = new TextFieldHandler();
+		lastName.addActionListener(last);
+		
+		ID = new JTextField(10);
+		TextFieldHandler id = new TextFieldHandler();
+		ID.addActionListener(id);
+		
+		Password = new JTextField(10);
+		TextFieldHandler pass = new TextFieldHandler();
+		Password.addActionListener(pass);
+		
+		Phone = new JTextField(10);
+		TextFieldHandler phone = new TextFieldHandler();
+		Phone.addActionListener(phone);
+		
+		Email = new JTextField(10);
+		TextFieldHandler email = new TextFieldHandler();
+		Email.addActionListener(email);
+		
+		lblIn = new JLabel("Input");
+		lblOut = new JLabel("Output");
+		
+		//field of study
+		fieldgroup.add(Alcohol);
+		fieldgroup.add(Culinary);
+		fieldgroup.add(Secret);
+		
+		//classes available in CulinaryAstrology
+		culgroup.add(math);
+		culgroup.add(lang);
+		culgroup.add(sci);
+		culgroup.add(acp);
+		culgroup.add(abd);
+		culgroup.add(ets);
+		
+		//classes available for SecretService
+		secgroup.add(math);
+		secgroup.add(lang);
+		secgroup.add(sci);
+		secgroup.add(hum);
+		secgroup.add(hist);
+		secgroup.add(eng);
+		
+		//classes available for AlchoholBiology
+		alcgroup.add(math);
+		alcgroup.add(lang2);
+		alcgroup.add(sci);
+		alcgroup.add(hist2);
+		alcgroup.add(tas);
+		alcgroup.add(bio);	
+	}
+	
+	private class RadioButtonHandler implements ItemListener
+	{
+		public void itemStateChanged(ItemEvent e)
+		{
+			UpdateDisplay();
+		}
+	}
+	
+	private class TextFieldHandler implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			UpdateDisplay();
+		}
+	}	
+	
+	private void UpdateDisplay()
+	{
+		double in = 0;
+		String result;
+		
+		/*if(txtIn.getText() == "")
+		{
+			txtOut.setText("no Imput");
+			return;
+		}
+		try
+		{
+			in = Double.parseDouble(txtIn.getText());
+		}
+		catch(NumberFormatException e)
+		{
+			txtOut.setText(null);
+			return;
+		}
+		
+		
+		if(student.isSelected())
+		{
+		newstudent = true;
+				
+			if(culinary.isSelected())
+			{
+			fos = "culinary astrology"
+			}
+			else if(secret.isSelected())
+			{
+			fos = "secret service"
+			}
+			else if(Alcohol.isSelected())
+			{
+			fos	= "alcohol biology"
+			}
+			fName = firstName.getText();
+			lName = lastName.getText();
+			ident = ID.getText();
+			passWord = password.getText();
+			age = Age.getText();
+			phone = Phone.getText();
+			email = Email.getText();
+			
+			Student student= new Student(first, last, id, password, age, phone, email, fos);
+		}
+		else if(teacher.isSelected())
+		{
+		newstudent = false;
+						
+			if(culinary.isSelected())
+			{
+			fos = "culinary astrology"
+			}
+			else if(secret.isSelected())
+			{
+			fos = "secret service"
+			}
+			else if(Alcohol.isSelected())
+			{
+			fos	= "alcohol biology"
+			}
+			fName = firstName.getText();
+			lName = lastName.getText();
+			ident = ID.getText();
+			passWord = password.getText();
+			age = Age.getText();
+			phone = Phone.getText();
+			email = Email.getText();
+			
+			Teacher teacher= new teacher(first, last, id, password, age, gender, phone, email, fos);
+		}
+		
+		
+			if(fos == "culinary astrology")
+			{
+				if(math.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("MATH_9001")
+					}
+					else
+					{
+						teacher.Enroll("MATH_9001")
+					}
+				}
+				else if(lang.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("LANG_750")
+					}
+					else
+					{
+						teacher.Enroll("LANG_750")
+					}
+				}
+				else if(sci.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("SCI_356")
+					}
+					else
+					{
+						teacher.Enroll("SCI_356")
+					}
+
+				}
+				else if(acp.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("ACP_330")
+					}
+					else
+					{
+						teacher.Enroll("ACP_330")
+					}
+
+
+				}
+				else if(abd.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("ABD_210")
+					}
+					else
+					{
+						teacher.Enroll("ABD_210")
+					}
+
+			
+				}
+				else if(ets.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("ETS_101")
+					}
+					else
+					{
+						teacher.Enroll("ETS_101")
+					}
+			
+				}
+			}
+			else if(fos == "secret service")
+			{
+				if(math.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("MATH_9001")
+					}
+					else
+					{
+						teacher.Enroll("MATH_9001")
+					}
+				}
+				else if(lang.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("LANG_750")
+					}
+					else
+					{
+						teacher.Enroll("LANG_750")
+					}
+
+				}
+				else if(sci.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("SCI_356")
+					}
+					else
+					{
+						teacher.Enroll("SCI_356")
+					}
+
+
+				}
+				else if(hum.isSelected())
+				{
+				if(newstudent = true)
+					{
+						student.Enroll("HUM_410")
+					}
+					else
+					{
+						teacher.Enroll("HUM_410")
+					}
+		
+				}
+				else if(hist.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("HIST_213")
+					}
+					else
+					{
+						teacher.Enroll("HIST_213")
+					}
+
+				}
+				else if(eng.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("ENG_512_")
+					}
+					else
+					{
+						teacher.Enroll("ENG_512")
+					}
+		
+				}
+			}
+			else if(fos	= "alcohol biology")
+			{
+				if(math.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("MATH_9001")
+					}
+					else
+					{
+						teacher.Enroll("MATH_9001")
+					}
+				}
+				else if(lang2.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("LANG_732")
+					}
+					else
+					{
+						teacher.Enroll("LANG_732")
+					}
+		
+				}
+				else if(sci.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("SCI_356")
+					}
+					else
+					{
+						teacher.Enroll("SCI_356")
+					}
+
+			
+				}
+				else if(hist2.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("HIST_410")
+					}
+					else
+					{
+						teacher.Enroll("HIST_410")
+					}
+			
+				}
+				else if(tas.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("TAS_101")
+					}
+					else
+					{
+						teacher.Enroll("TAS_101")
+					}
+			
+				}
+				else if(bio.isSelected())
+				{
+					if(newstudent = true)
+					{
+						student.Enroll("BIO_559")
+					}
+					else
+					{
+						teacher.Enroll("BIO_559")
+					}
+			
+				}
+			}
+
+*/
+
+
+
+			
+	}
+}
