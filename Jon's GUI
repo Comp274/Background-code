@@ -1,0 +1,278 @@
+import java.awt.*;
+
+import javax.swing.*;
+
+import java.awt.event.*;
+
+public class GUI extends JFrame
+{
+	JRadioButton acp, abd, ets, math, lang, sci, hum, hist, eng, hist2, tas, bio, lang2, student, teacher;
+	ButtonGroup culgroup, secgroup, alcgroup;
+	JPanel upper, lower, left, right;
+	
+	public void GUI()
+	{
+		teacher = new JRadioButton();
+		student = new JRadioButton();
+				
+		
+		
+		//repeating classes
+		math = new JRadioButton("MATH_9001  Math");
+		lang = new JRadioButton("LANG_750  Martian Language Arts");
+		sci = new JRadioButton("SCI_356  Science");
+		
+		//classes for culinary
+		acp = new JRadioButton("ACP_330  Astrological culinary physics");
+		abd = new JRadioButton("ABD_210  Astrological botany and dehydration");
+		ets = new JRadioButton("ETS_101  Extraterrestrial sociology");
+		
+		//classes for secret
+		hum = new JRadioButton("HUM_410  Womanizing");
+		hist = new JRadioButton("HIST_213  History of the Tactical Turtleneck");
+		eng = new JRadioButton("ENG_512  Fort Engineering");
+		
+		//classes for alcohol
+		hist2 = new JRadioButton("HIST_410  History of the Bloody Mary");
+		tas = new JRadioButton("TAS_101  Tasting");
+		bio = new JRadioButton("BIO_559  Distilling and Brewing");
+		lang2 = new JRadioButton("LANG_732  Drunk Language Arts");
+		
+		RadioButtonHandler bh = new RadioButtonHandler();
+		
+		teacher.addItemListener(bh);
+		student.addItemListener(bh);
+		
+		//repeating classes
+		math.addItemListener(bh);
+		lang.addItemListener(bh);
+		sci.addItemListener(bh);
+		
+		//classes for culinary
+		acp.addItemListener(bh);
+		abd.addItemListener(bh);
+		ets.addItemListener(bh);
+		
+		//classes for secret
+		hum.addItemListener(bh);
+		hist.addItemListener(bh);
+		eng.addItemListener(bh);
+		
+		//classes for alcohol
+		hist2.addItemListener(bh);
+		tas.addItemListener(bh);
+		bio.addItemListener(bh);
+		lang2.addItemListener(bh);
+		
+		//field and class groups
+		
+		culgroup = new ButtonGroup();
+		secgroup = new ButtonGroup();
+		alcgroup = new ButtonGroup();
+		
+		
+		
+		//classes available in CulinaryAstrology
+		culgroup.add(math);
+		culgroup.add(lang);
+		culgroup.add(sci);
+		culgroup.add(acp);
+		culgroup.add(abd);
+		culgroup.add(ets);
+		
+		//classes available for SecretService
+		secgroup.add(math);
+		secgroup.add(lang);
+		secgroup.add(sci);
+		secgroup.add(hum);
+		secgroup.add(hist);
+		secgroup.add(eng);
+		
+		//classes available for AlchoholBiology
+		alcgroup.add(math);
+		alcgroup.add(lang2);
+		alcgroup.add(sci);
+		alcgroup.add(hist2);
+		alcgroup.add(tas);
+		alcgroup.add(bio);	
+	}
+	
+	public class newUser extends JFrame
+	{
+		JRadioButton Culinary, Secret, Alcohol;
+		JTextField firstName, lastName,ID, Password, Age, Phone, Email;
+		JButton ok = new JButton("OK");
+		JPanel info,fieldSelect, fieldgroup, full;
+		boolean newstudent;
+		String fName, lName, ident, passWord, age, gender, phone, email, fos;
+	
+		JLabel First, Last, IDlabel, passLabel, phoneLabel, emailLabel;
+		
+		public void newUser()
+		{
+			RadioButtonHandler bh = new RadioButtonHandler();
+			
+			//fields of study
+			Culinary = new JRadioButton ("CulinaryAstrology");
+			Secret = new JRadioButton ("SecretService");
+			Alcohol = new JRadioButton ("AlchoholBiology");
+			
+			Culinary.addItemListener(bh);
+			Secret.addItemListener(bh);
+			Alcohol.addItemListener(bh);
+			
+			fieldgroup = new JPanel( new GridLayout(0,1));
+			
+			//field of study
+			fieldgroup.add(Alcohol);
+			fieldgroup.add(Culinary);
+			fieldgroup.add(Secret);
+			
+			
+			ok.addActionListener((ActionListener) this);	
+			
+			firstName = new JTextField(10);
+			TextFieldHandler first = new TextFieldHandler();
+			firstName.addActionListener(first);
+		
+			lastName = new JTextField(10);
+			TextFieldHandler last = new TextFieldHandler();
+			lastName.addActionListener(last);
+		
+			ID = new JTextField(10);
+			TextFieldHandler id = new TextFieldHandler();
+			ID.addActionListener(id);
+		
+			Password = new JTextField(10);
+			TextFieldHandler pass = new TextFieldHandler();
+			Password.addActionListener(pass);
+		
+			Phone = new JTextField(10);
+			TextFieldHandler phone = new TextFieldHandler();
+			Phone.addActionListener(phone);
+		
+			Email = new JTextField(10);
+			TextFieldHandler email = new TextFieldHandler();
+			Email.addActionListener(email);
+		
+			//Labels
+	
+			First = new JLabel("First Name:");
+			Last = new JLabel("Last Name:");
+			IDlabel = new JLabel("ID:");
+			passLabel = new JLabel("Password:");
+			phoneLabel = new JLabel("Phone Number:");
+			emailLabel = new JLabel("Email:");
+		
+			//JPanel
+		
+			info = new JPanel(new GridLayout(0,1));
+			info.add(First);
+			info.add(firstName);
+			info.add(Last);
+			info.add(lastName);
+			info.add(IDlabel);
+			info.add(ID);
+			info.add(passLabel);
+			info.add(Password);
+			info.add(phoneLabel);
+			info.add(Phone);
+			info.add(emailLabel);
+			info.add(Email);
+			full= new JPanel();
+			full.setLayout(new BorderLayout());
+			full.add(info,BorderLayout.WEST);
+			full.add(fieldgroup,BorderLayout.EAST);
+			full.add(ok,BorderLayout.SOUTH);
+			
+		}
+	}
+	
+	private class RadioButtonHandler implements ItemListener
+	{
+		public void itemStateChanged(ItemEvent e)
+		{
+			UpdateDisplay();
+		}
+	}
+	
+	private class TextFieldHandler implements ActionListener
+	{
+		public void actionPerformed(ActionEvent e)
+		{
+			UpdateDisplay();
+		}
+	}	
+	
+	private void UpdateDisplay()
+	{
+		double in = 0;
+		String result;
+		
+		/*if(txtIn.getText() == "")
+		{
+			txtOut.setText("no Imput");
+			return;
+		}
+		try
+		{
+			in = Double.parseDouble(txtIn.getText());
+		}
+		catch(NumberFormatException e)
+		{
+			txtOut.setText(null);
+			return;
+		}
+		
+		if(Culinary.isSelected())
+		{
+			if(fahout.isSelected())
+			{
+				result = String.format("%.2f%c F", TempConversion.CtoF(in), 176);
+			}
+			else if(kelout.isSelected())
+			{
+			result = String.format("%.2f K", TempConversion.CtoK(in));
+			}
+			else
+			{
+			result = String.format("%.2f%c C", in, 176);
+			}
+			txtOut.setText(result);
+		}
+		else if(fahin.isSelected())
+		{
+			if(fahout.isSelected())
+			{
+				result = String.format("%.2f%c F", in, 176);
+			}
+			else if(kelout.isSelected())
+			{
+			result = String.format("%.2f K", TempConversion.FtoK(in));
+			}
+			else
+			{
+			result = String.format("%.2f%c C", TempConversion.FtoC(in), 176);
+			}
+			txtOut.setText(result);
+		}
+		else if(kelin.isSelected())
+		{
+			if(fahout.isSelected())
+			{
+				result = String.format("%.2f%c F", TempConversion.KtoF(in), 176);
+			}
+			else if(kelout.isSelected())
+			{
+				result = String.format("%.2f K", in);
+			}
+			else
+			{
+				result = String.format("%.2f%c C", TempConversion.KtoC(in), 176);
+			}
+			txtOut.setText(result);
+		}*/
+
+			
+	}
+}
