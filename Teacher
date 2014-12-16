@@ -1,57 +1,42 @@
-public class Teacher extends Person
+import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
+
+public class Student extends Person
 {
-	public String teachOne, teachTwo;
-	public String department;
-	public String officeHours;
-	private int random;
+	public double GPA;
+	public String enrolledOne, enrolledTwo, enrollResult;
+	public String FOS;
 	
-	public Teacher(String First, String Last, String ID, String Password, int Age, char Gender, String Phone,String Email)
+	public Student(String First, String Last, String ID, String Password, String Phone, String Email,String a) throws IOException
 	{
-		super(First, Last, ID, Password, Age, Gender, Phone, Email);
-		teachOne = "needs enrolled";
-		teachTwo = "needs enrolled";
+		super(First,Last,ID,Password,Phone,Email);
+		FOS=a; 
+		enrolledOne="needsenrolled";
+		enrolledTwo="needsenrolled";
 	}
 	
-	public void department()
+	public void Enroll(String pick)
 	{
-		random =(int) (Math.random() * 3 + 1);
-		if (random == 0)
+		if (enrolledOne == "needsenrolled")
 		{
-			department = "CA";
+			enrolledOne=pick;
+			enrollResult ="Enrolled successfully in " + pick + " for class one";
+			JOptionPane.showMessageDialog(null, enrollResult);
+
 		}
-		else if (random == 1)
+		else if (enrolledTwo == "needsenrolled")
 		{
-			department = "SS";
+
+			enrolledTwo=pick;
+			enrollResult ="Enrolled successfully in " + pick + " for class two";
+			JOptionPane.showMessageDialog(null, enrollResult);
 		}
 		else
 		{
-			department = "AB";
-		}
-	}
-	
-	public void Hours()
-	{
-		random = (int) (Math.random() * 5 + 1);
-		
-		if(random == 1)
-		{
-			officeHours = "Monday";
-		}
-		else if(random == 2)
-		{
-			officeHours = "Tuesday";
-		}
-		else if(random == 3)
-		{
-			officeHours = "Wednesday";
-		}
-		else if(random == 4)
-		{
-			officeHours = "Thursday";
-		}
-		else
-		{
-			officeHours = "Friday";
+			enrollResult = "You have enough classes";
+			JOptionPane.showMessageDialog(null, enrollResult);
 		}
 	}
 }
