@@ -1,7 +1,5 @@
 import java.io.*;
 
-import javax.imageio.stream.FileImageInputStream;
-
 public class Person 
 {
 	public String Firstname, Lastname, id, password;
@@ -11,13 +9,13 @@ public class Person
 	public String phone, email;
 	public Boolean hasInsurance, isActive;
 		
-	public Person(String First, String Last, String ID, String Password, String Age, String Gender, String Phone, String Email) throws IOException
+	public Person(String First, String Last, String ID, String Password,  String Phone, String Email) throws IOException
 	{
-		File file = new File("C:\\Users\\D40067406\\Desktop\\" + ID + ".txt");
-		BufferedReader reader = new BufferedReader(new FileReader(file));
-		PrintWriter writer = new PrintWriter(new FileOutputStream(file, false));
-		if(file.exists() == true)
-		{
+		//File file = new File("C:\\Users\\D40067406\\Desktop\\" + ID + ".txt");
+		//BufferedReader reader = new BufferedReader(new FileReader(file));
+		//PrintWriter writer = new PrintWriter(new FileOutputStream(file, false));
+		//if(file.exists() == true)
+		/*{
 			int index;
 		
 			String line = reader.readLine();
@@ -48,15 +46,9 @@ public class Person
 	            index = line.indexOf("5");
 	            if(index >= 0 ) 
 	            {
-	                Age = (line.substring(index));
-	            }
-
-	            index = line.indexOf("6");
-	            if(index >= 0 ) 
-	            {
 	                Phone = (line.substring(index));
 	            }
-	            index = line.indexOf("7");
+	            index = line.indexOf("6");
 	            if(index >= 0 ) 
 	            {
 	                Email = (line.substring(index));
@@ -65,24 +57,24 @@ public class Person
 
 		}
 		else
-		{	
+		{*/
 		Firstname=First;
-		writer.write(Firstname + System.getProperty("line.separator"));
+		//writer.write(Firstname + System.getProperty("line.separator"));
 		Lastname=Last;
-		writer.write(Lastname + System.getProperty("line.separator"));
+		//writer.write(Lastname + System.getProperty("line.separator"));
 		id=ID;
-		writer.write(id + System.getProperty("line.separator"));
+		//writer.write(id + System.getProperty("line.separator"));
 		password=Password;
-		writer.write(password + System.getProperty("line.separator"));
-		age=Age;
-		writer.write(age + System.getProperty("line.separator"));
+		//writer.write(password + System.getProperty("line.separator"));
 		phone=Phone;
-		writer.write(phone + System.getProperty("line.separator"));
+		//writer.write(phone + System.getProperty("line.separator"));
 		email=Email;
-		writer.write(email + System.getProperty("line.separator"));
+		//writer.write(email + System.getProperty("line.separator"));
 		hasInsurance=false;
 		isActive=true;
-		}
+	//	}
+	//	writer.close();
+	//	reader.close();
 
 	}
 
