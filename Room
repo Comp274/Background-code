@@ -1,5 +1,10 @@
-public class Room  extends Course
+public class Room
 {
+	public Room() 
+	{
+
+	}
+
 	public boolean hasComputers;
 	public int maxSeats;
 	public int roomNumber;
