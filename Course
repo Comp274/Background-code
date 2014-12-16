@@ -1,56 +1,16 @@
+import javax.swing.JRadioButton;
+
 
 public class Course
 {
-	private double random;
-	public String classDay;
-	public String teacher;
-	public String courseName;
+	String FieldOfStudy, course;
 	
-	public void DayGen(String className)
+	public Course (String a, String b)
 	{
-		courseName = className;
-		random = Math.random() * 5 + 1;
-		if(random == 1)
-		{
-			classDay = "Monday";
-		}
-		else if(random == 2)
-		{
-			classDay = "Tuesday";
-		}
-		else if(random== 3)
-		{
-			classDay = "Wednesday";
-		}
-		else if(random== 4)
-		{
-			classDay = "Thursday";
-		}
-		else
-		{
-			classDay = "Friday";
-		}
-	}
-	
-	public void TeacherPicker()
-	{
-		random = Math.random() * 4 + 1;
+		FieldOfStudy = a;
+		course = b;
 		
-		if(random == 1)
-		{
-			teacher = "Professor Hamburger";
-		}
-		else if(random == 2)
-		{
-			teacher = "Professor Sheely";
-		}
-		else if(random == 3)
-		{
-			teacher = "Professor Fish";
-		}	
-		else if(random == 4)
-		{
-			teacher = "Professor Yackenoff";
-		}
 	}
+		
+	
 }
