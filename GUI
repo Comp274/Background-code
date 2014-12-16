@@ -3,22 +3,136 @@ import java.awt.*;
 import javax.swing.*;
 
 import java.awt.event.*;
+import java.io.IOException;
 
-public class GUI extends JFrame
+public class GUI extends JFrame implements ActionListener
 {
-	JRadioButton Culinary, Secret, Alcohol, acp, abd, ets, math, lang, sci, hum, hist, eng, hist2, tas, bio, lang2;
-	JTextField firstName, lastName,ID, Password, Age, Phone, Email;
-	JLabel lblIn, lblOut;
-	ButtonGroup fieldgroup, culgroup, secgroup, alcgroup;
+	JRadioButton acp, abd, ets, math, lang, sci, hum, hist, eng, hist2, tas, bio, lang2, student, teacher;
+
 	JPanel upper, lower, left, right;
 	
-	public void GUI()
+	JRadioButton culinary, secret, alcohol;
+	JTextField firstName, lastName,ID, password, Age, Phone, Email;
+	JButton okbtnstart, okbtnnew, okbtnenroll, newuserbtn;
+	JPanel info,fieldSelect, fieldgroup, full, buttons,sort, culgroup, secgroup, alcgroup;
+	boolean newstudent;
+	String fName, lName, ident, passWord, age, phone, email, fos;
+	Student studentOne;
+	Teacher teacherOne;
+	JLabel First, Last, IDlabel, passLabel, phoneLabel, emailLabel;
+	GUI display;
+	
+	public GUI()
 	{
-		//fields of study
-		Culinary = new JRadioButton ("CulinaryAstrology");
-		Secret = new JRadioButton ("SecretService");
-		Alcohol = new JRadioButton ("AlchoholBiology");
+		teacher = new JRadioButton("teacher");
+		student = new JRadioButton("student");
+		okbtnstart = new JButton("OK");
+		okbtnstart.addActionListener(this);
+		newuserbtn = new JButton("New User");
+		newuserbtn.addActionListener(this);
+		//startUp();		
+	
+		ID = new JTextField(6);
+	
+		password = new JTextField(6);
+
+		info = new JPanel(new GridLayout(0,1));
+		info.add(ID);
+		info.add(password);
+		buttons = new JPanel(new GridLayout(1,0));
+		buttons.add(okbtnstart);
+		buttons.add(newuserbtn);
+		sort = new JPanel(new GridLayout(0,1));
+		sort.add(student);
+		sort.add(teacher);
+		full = new JPanel(new BorderLayout());
+		full.add(info,BorderLayout.WEST);
+		full.add(sort,BorderLayout.EAST);
+		full.add(buttons,BorderLayout.SOUTH);
 		
+		JFrame frame = new JFrame();
+		frame.add(full);
+		frame.setSize(100, 200);
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
+	}
+	
+
+		
+		public void newUser()
+		{
+
+			
+			okbtnnew = new JButton("OK");
+			okbtnnew.addActionListener(this);
+			
+			
+			//fields of study
+			culinary = new JRadioButton ("CulinaryAstrology");
+			secret = new JRadioButton ("SecretService");
+			alcohol = new JRadioButton ("AlchoholBiology");
+			
+
+			
+			fieldgroup = new JPanel( new GridLayout(0,1));
+			
+			//field of study
+			fieldgroup.add(alcohol);
+			fieldgroup.add(culinary);
+			fieldgroup.add(secret);
+			
+			
+			firstName = new JTextField(10);
+
+			lastName = new JTextField(10);
+		
+			ID = new JTextField(10);
+		
+			password = new JTextField(10);
+		
+			Phone = new JTextField(10);
+		
+			Email = new JTextField(10);
+
+			//Labels
+	
+			First = new JLabel("First Name:");
+			Last = new JLabel("Last Name:");
+			IDlabel = new JLabel("ID:");
+			passLabel = new JLabel("Password:");
+			phoneLabel = new JLabel("Phone Number:");
+			emailLabel = new JLabel("Email:");
+		
+			//JPanel
+		
+			info = new JPanel(new GridLayout(0,1));
+			info.add(First);
+			info.add(firstName);
+			info.add(Last);
+			info.add(lastName);
+			info.add(IDlabel);
+			info.add(ID);
+			info.add(passLabel);
+			info.add(password);
+			info.add(phoneLabel);
+			info.add(Phone);
+			info.add(emailLabel);
+			info.add(Email);
+			full= new JPanel();
+			full.setLayout(new BorderLayout());
+			full.add(info,BorderLayout.WEST);
+			full.add(fieldgroup,BorderLayout.EAST);
+			full.add(okbtnnew,BorderLayout.SOUTH);
+			JFrame frameTwo = new JFrame();
+			frameTwo.add(full);
+			frameTwo.setSize(100, 200);
+			frameTwo.setVisible(true);
+			frameTwo.setLocationRelativeTo(null);
+			
+	}
+		
+	public void Enroll()
+	{
 		//repeating classes
 		math = new JRadioButton("MATH_9001  Math");
 		lang = new JRadioButton("LANG_750  Martian Language Arts");
@@ -39,179 +153,421 @@ public class GUI extends JFrame
 		tas = new JRadioButton("TAS_101  Tasting");
 		bio = new JRadioButton("BIO_559  Distilling and Brewing");
 		lang2 = new JRadioButton("LANG_732  Drunk Language Arts");
-		
-		RadioButtonHandler bh = new RadioButtonHandler();
-		
-		Culinary.addItemListener(bh);
-		Secret.addItemListener(bh);
-		Alcohol.addItemListener(bh);
-		
-		math.addItemListener(bh);
-		lang.addItemListener(bh);
-		sci.addItemListener(bh);
-		
-		acp.addItemListener(bh);
-		abd.addItemListener(bh);
-		ets.addItemListener(bh);
-		
-		hum.addItemListener(bh);
-		hist.addItemListener(bh);
-		eng.addItemListener(bh);
-		
-		hist2.addItemListener(bh);
-		tas.addItemListener(bh);
-		bio.addItemListener(bh);
-		lang2.addItemListener(bh);
-		
+				
 		//field and class groups
-		fieldgroup = new ButtonGroup();
-		culgroup = new ButtonGroup();
-		secgroup = new ButtonGroup();
-		alcgroup = new ButtonGroup();
+		
+		culgroup = new JPanel(new GridLayout(0,1));
+		secgroup = new JPanel(new GridLayout(0,1));
+		alcgroup = new JPanel(new GridLayout(0,1));
 		
 		
-		firstName = new JTextField(10);
-		TextFieldHandler first = new TextFieldHandler();
-		firstName.addActionListener(first);
 		
-		lastName = new JTextField(10);
-		TextFieldHandler last = new TextFieldHandler();
-		lastName.addActionListener(last);
+
 		
-		ID = new JTextField(10);
-		TextFieldHandler id = new TextFieldHandler();
-		ID.addActionListener(id);
+
 		
-		Password = new JTextField(10);
-		TextFieldHandler pass = new TextFieldHandler();
-		Password.addActionListener(pass);
+
+		buttons = new JPanel(new GridLayout(1,0));
+		JButton okbtnenroll = new JButton("OK");
+		okbtnenroll.addActionListener(this);
+		buttons.add(okbtnenroll);
+		full = new JPanel(new BorderLayout());
+
 		
-		Phone = new JTextField(10);
-		TextFieldHandler phone = new TextFieldHandler();
-		Phone.addActionListener(phone);
-		
-		Email = new JTextField(10);
-		TextFieldHandler email = new TextFieldHandler();
-		Email.addActionListener(email);
-		
-		lblIn = new JLabel("Input");
-		lblOut = new JLabel("Output");
-		
-		//field of study
-		fieldgroup.add(Alcohol);
-		fieldgroup.add(Culinary);
-		fieldgroup.add(Secret);
-		
-		//classes available in CulinaryAstrology
-		culgroup.add(math);
-		culgroup.add(lang);
-		culgroup.add(sci);
-		culgroup.add(acp);
-		culgroup.add(abd);
-		culgroup.add(ets);
-		
-		//classes available for SecretService
-		secgroup.add(math);
-		secgroup.add(lang);
-		secgroup.add(sci);
-		secgroup.add(hum);
-		secgroup.add(hist);
-		secgroup.add(eng);
-		
-		//classes available for AlchoholBiology
-		alcgroup.add(math);
-		alcgroup.add(lang2);
-		alcgroup.add(sci);
-		alcgroup.add(hist2);
-		alcgroup.add(tas);
-		alcgroup.add(bio);	
+		if(fos == "culinary astrology")
+		{
+			//classes available in CulinaryAstrology
+			culgroup.add(math);
+			culgroup.add(lang);
+			culgroup.add(sci);
+			culgroup.add(acp);
+			culgroup.add(abd);
+			culgroup.add(ets);
+			full.add(culgroup,BorderLayout.CENTER);
+			full.add(buttons, BorderLayout.SOUTH);
+		}
+		else if(fos == "secret service")
+		{
+			//classes available for SecretService
+			secgroup.add(math);
+			secgroup.add(lang);
+			secgroup.add(sci);
+			secgroup.add(hum);
+			secgroup.add(hist);
+			secgroup.add(eng);
+			full.add(secgroup,BorderLayout.CENTER);
+			full.add(buttons, BorderLayout.SOUTH);
+		}
+		else if(fos	== "alcohol biology")
+		{
+			//classes available for AlchoholBiology
+			alcgroup.add(math);
+			alcgroup.add(lang2);
+			alcgroup.add(sci);
+			alcgroup.add(hist2);
+			alcgroup.add(tas);
+			alcgroup.add(bio);
+			full.add(alcgroup,BorderLayout.CENTER);
+			full.add(buttons, BorderLayout.SOUTH);
+		}
+		JFrame frame = new JFrame();
+		frame.add(full);
+		frame.setSize(250, 300);
+		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
 	}
-	
-	private class RadioButtonHandler implements ItemListener
-	{
-		public void itemStateChanged(ItemEvent e)
-		{
-			UpdateDisplay();
-		}
-	}
-	
-	private class TextFieldHandler implements ActionListener
-	{
-		public void actionPerformed(ActionEvent e)
-		{
-			UpdateDisplay();
-		}
-	}	
-	
-	private void UpdateDisplay()
-	{
-		double in = 0;
-		String result;
 		
-		/*if(txtIn.getText() == "")
+	public void actionPerformed(ActionEvent ev)
+	{
+
+		if(ev.getSource() == okbtnstart)
 		{
-			txtOut.setText("no Imput");
-			return;
+			
 		}
-		try
+		else if (ev.getSource() == okbtnnew)
 		{
-			in = Double.parseDouble(txtIn.getText());
+			if(student.isSelected())
+			{
+			newstudent = true;
+					
+				if(culinary.isSelected())
+				{
+				fos = "culinary astrology";
+				}
+				else if(secret.isSelected())
+				{
+				fos = "secret service";
+				}
+				else if(alcohol.isSelected())
+				{
+				fos	= "alcohol biology";
+				}
+				fName = firstName.getText();
+				lName = lastName.getText();
+				ident = ID.getText();
+				passWord = password.getText();
+				phone = Phone.getText();
+				email = Email.getText();
+				
+				try 
+				{
+					Student studentOne= new Student(fName, lName, ident, passWord, phone, email, fos);
+				}
+				catch (IOException e) 
+				{				
+					e.printStackTrace();
+				}
+			}
+			else if(teacher.isSelected())
+			{
+			newstudent = false;
+							
+				if(culinary.isSelected())
+				{
+				fos = "culinary astrology";
+				}
+				else if(secret.isSelected())
+				{
+				fos = "secret service";
+				}
+				else if(alcohol.isSelected())
+				{
+				fos	= "alcohol biology";
+				}
+				fName = firstName.getText();
+				lName = lastName.getText();
+				ident = ID.getText();
+				passWord = password.getText();
+				phone = Phone.getText();
+				email = Email.getText();
+				
+				try 
+				{
+					Teacher teacherOne= new Teacher(fName, lName, ident, passWord, phone, email, fos);
+				}
+				catch (IOException e) 
+				{
+					e.printStackTrace();
+				}
+			}
+			Enroll();
+			
+			
 		}
-		catch(NumberFormatException e)
+		else if (ev.getSource() == okbtnenroll);
 		{
-			txtOut.setText(null);
-			return;
-		}
-		
-		if(Culinary.isSelected())
-		{
-			if(fahout.isSelected())
+			if(fos == "culinary astrology")
 			{
-				result = String.format("%.2f%c F", TempConversion.CtoF(in), 176);
-			}
-			else if(kelout.isSelected())
-			{
-			result = String.format("%.2f K", TempConversion.CtoK(in));
-			}
-			else
-			{
-			result = String.format("%.2f%c C", in, 176);
-			}
-			txtOut.setText(result);
-		}
-		else if(fahin.isSelected())
-		{
-			if(fahout.isSelected())
-			{
-				result = String.format("%.2f%c F", in, 176);
-			}
-			else if(kelout.isSelected())
-			{
-			result = String.format("%.2f K", TempConversion.FtoK(in));
-			}
-			else
-			{
-			result = String.format("%.2f%c C", TempConversion.FtoC(in), 176);
-			}
-			txtOut.setText(result);
-		}
-		else if(kelin.isSelected())
-		{
-			if(fahout.isSelected())
-			{
-				result = String.format("%.2f%c F", TempConversion.KtoF(in), 176);
-			}
-			else if(kelout.isSelected())
-			{
-				result = String.format("%.2f K", in);
-			}
-			else
-			{
-				result = String.format("%.2f%c C", TempConversion.KtoC(in), 176);
-			}
-			txtOut.setText(result);
-		}*/
+				if(math.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("MATH_9001");
+					}
+					else
+					{
+						teacherOne.Enroll("MATH_9001");
+					}
+				}
+				else if(lang.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("LANG_750");
+					}
+					else
+					{
+						teacherOne.Enroll("LANG_750");
+					}
+				}
+				else if(sci.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("SCI_356");
+					}
+					else
+					{
+						teacherOne.Enroll("SCI_356");
+					}
+
+				}
+				else if(acp.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("ACP_330");
+					}
+					else
+					{
+						teacherOne.Enroll("ACP_330");
+					}
+
+
+				}
+				else if(abd.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("ABD_210");
+					}
+					else
+					{
+						teacherOne.Enroll("ABD_210");
+					}
 
 			
+				}
+				else if(ets.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("ETS_101");
+					}
+					else
+					{
+						teacherOne.Enroll("ETS_101");
+					}
+			
+				}
+			}
+			else if(fos == "secret service")
+			{
+				if(math.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("MATH_9001");
+					}
+					else
+					{
+						teacherOne.Enroll("MATH_9001");
+					}
+				}
+				else if(lang.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("LANG_750");
+					}
+					else
+					{
+						teacherOne.Enroll("LANG_750");
+					}
+
+				}
+				else if(sci.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("SCI_356");
+					}
+					else
+					{
+						teacherOne.Enroll("SCI_356");
+					}
+
+
+				}
+				else if(hum.isSelected())
+				{
+				if(newstudent == true)
+					{
+						studentOne.Enroll("HUM_410");
+					}
+					else
+					{
+						teacherOne.Enroll("HUM_410");
+					}
+		
+				}
+				else if(hist.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("HIST_213");
+					}
+					else
+					{
+						teacherOne.Enroll("HIST_213");
+					}
+
+				}
+				else if(eng.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("ENG_512_");
+					}
+					else
+					{
+						teacherOne.Enroll("ENG_512");
+					}
+		
+				}
+			}
+			else if(fos	== "alcohol biology")
+			{
+				if(math.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("MATH_9001");
+					}
+					else
+					{
+						teacherOne.Enroll("MATH_9001");
+					}
+				}
+				else if(lang2.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("LANG_732");
+					}
+					else
+					{
+						teacherOne.Enroll("LANG_732");
+					}
+		
+				}
+				else if(sci.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("SCI_356");
+					}
+					else
+					{
+						teacherOne.Enroll("SCI_356");
+					}
+
+			
+				}
+				else if(hist2.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("HIST_410");
+					}
+					else
+					{
+						teacherOne.Enroll("HIST_410");
+					}
+			
+				}
+				else if(tas.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("TAS_101");
+					}
+					else
+					{
+						teacherOne.Enroll("TAS_101");
+					}
+			
+				}
+				else if(bio.isSelected())
+				{
+					if(newstudent == true)
+					{
+						studentOne.Enroll("BIO_559");
+					}
+					else
+					{
+						teacherOne.Enroll("BIO_559");
+					}
+			
+				}
+				
+				if(newstudent == true)
+				{
+				ScheduledCourse courseOne = new ScheduledCourse();
+				courseOne.course.FieldOfStudy = fos;
+				courseOne.course.course = studentOne.enrolledOne;
+				courseOne.room.RoomGen(studentOne.enrolledOne);
+				courseOne.DayGen();
+				courseOne.TeacherPicker();
+				courseOne.time();
+				JOptionPane.showMessageDialog(null, "The class of " + courseOne.course.course + " will be taught by " + courseOne.teacher + " on " + courseOne.day + " from " + courseOne.time + ".\n" + "The room for this class will be room " + courseOne.room.roomNumber + ", this room has " + courseOne.room.maxSeats + " seats and has computers is set to " + courseOne.room.hasComputers );
+				
+				ScheduledCourse courseTwo = new ScheduledCourse();
+				courseTwo.course.FieldOfStudy = fos;
+				courseTwo.course.course = studentOne.enrolledTwo;
+				courseTwo.room.RoomGen(studentOne.enrolledOne);
+				courseTwo.DayGen();
+				courseTwo.TeacherPicker();
+				courseTwo.time();
+				JOptionPane.showMessageDialog(null, "The class of " + courseTwo.course.course + " will be taught by " + courseTwo.teacher + " on " + courseTwo.day + " from " + courseTwo.time + ".\n" + "The room for this class will be room " + courseTwo.room.roomNumber + ", this room has " + courseTwo.room.maxSeats + " seats and has computers is set to " + courseTwo.room.hasComputers );
+				}
+				else
+				{
+					ScheduledCourse courseOne = new ScheduledCourse();
+					courseOne.course.FieldOfStudy = fos;
+					courseOne.course.course = teacherOne.teachOne;
+					courseOne.room.RoomGen(studentOne.enrolledOne);
+					courseOne.DayGen();
+					courseOne.TeacherPicker();
+					courseOne.time();
+					JOptionPane.showMessageDialog(null, "The class of " + courseOne.course.course + " will be taught by " + courseOne.teacher + " on " + courseOne.day + " from " + courseOne.time + ".\n" + "The room for this class will be room " + courseOne.room.roomNumber + ", this room has " + courseOne.room.maxSeats + " seats and has computers is set to " + courseOne.room.hasComputers );
+					
+					ScheduledCourse courseTwo = new ScheduledCourse();
+					courseTwo.course.FieldOfStudy = fos;
+					courseTwo.course.course = teacherOne.teachTwo;
+					courseTwo.room.RoomGen(studentOne.enrolledOne);
+					courseTwo.DayGen();
+					courseTwo.TeacherPicker();
+					courseTwo.time();
+					JOptionPane.showMessageDialog(null, "The class of " + courseTwo.course.course + " will be taught by " + courseTwo.teacher + " on " + courseTwo.day + " from " + courseTwo.time + ".\n" + "The room for this class will be room " + courseTwo.room.roomNumber + ", this room has " + courseTwo.room.maxSeats + " seats and has computers is set to " + courseTwo.room.hasComputers );
+				
+				}
+				
+				}
+		else if (ev.getSource() == newuserbtn)
+		{
+			newUser();
+		}
 	}
+}
 }
