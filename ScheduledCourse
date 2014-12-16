@@ -1,8 +1,77 @@
 
 public class ScheduledCourse
 {
-	Course course = new Course();
-	Room room = new Room();
+	Course course;
+	Room room; 
+	private int random;
+	public String day;
+	public String teacher;
+	public String time;
 	
+
+	public void DayGen()
+	{
+		random = (int) (Math.random() * 5 + 1);
+		if(random == 1)
+		{
+			day = "Monday";
+		}
+		else if(random == 2)
+		{
+			day = "Tuesday";
+		}
+		else if(random== 3)
+		{
+			day = "Wednesday";
+		}
+		else if(random== 4)
+		{
+			day = "Thursday";
+		}
+		else
+		{
+			day = "Friday";
+		}
+	}
 	
+	public void TeacherPicker()
+	{
+		random = (int) (Math.random() * 4 + 1);
+		
+		if(random == 1)
+		{
+			teacher = "Professor Hamburger";
+		}
+		else if(random == 2)
+		{
+			teacher = "Professor Sheely";
+		}
+		else if(random == 3)
+		{
+			teacher = "Professor Fish";
+		}	
+		else if(random == 4)
+		{
+			teacher = "Professor Yackenoff";
+		}
+	}
+	
+	public void time()
+	{
+		random = (int) (Math.random() * 3 + 1);
+		
+		if (random == 1)
+		{
+			time = "6 pm to 10 pm";
+		}
+		else if (random == 2)
+		{
+			time = "11 am to 3 pm";
+		}
+		else
+		{
+			time = "12 pm to 4 pm";
+		}
+	}
 }
+
