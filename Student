@@ -1,18 +1,18 @@
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 
 public class Student extends Person
 {
 	public double GPA;
-	public String enrolledOne, enrolledTwo, enrollResult,GPAresult;
+	public String enrolledOne, enrolledTwo, enrollResult;
 	public String FOS;
-	public boolean isEligible;
 	
-	public Student(String First, String Last, String ID, String Password, String Age, String Gender, String Phone, String Email,String a) throws IOException
+	public Student(String First, String Last, String ID, String Password, String Phone, String Email,String a) throws IOException
 	{
-		super(First,Last,ID,Password,Age,Gender,Phone,Email);
+		super(First,Last,ID,Password,Phone,Email);
 		FOS=a; 
-		GPA=3;
 		enrolledOne="needsenrolled";
 		enrolledTwo="needsenrolled";
 	}
@@ -23,6 +23,7 @@ public class Student extends Person
 		{
 			enrolledOne=pick;
 			enrollResult ="Enrolled successfully in " + pick + " for class one";
+			JOptionPane.showMessageDialog(null, enrollResult);
 
 		}
 		else if (enrolledTwo == "needsenrolled")
@@ -30,38 +31,12 @@ public class Student extends Person
 
 			enrolledTwo=pick;
 			enrollResult ="Enrolled successfully in " + pick + " for class two";
+			JOptionPane.showMessageDialog(null, enrollResult);
 		}
 		else
 		{
 			enrollResult = "You have enough classes";
-		}
-	}
-	
-	public void Eligibility()
-	{
-		GPA= Math.random() * 4 + 1;
-		
-		if (GPA <1.0)
-		{	
-			GPAresult = "Your GPA is " + GPA + "....You cannot schedule classes.";
-		}
-		else
-		{
-			GPAresult = "Your GPA is " + GPA;
-			isEligible= true;
-		}
-	}
-	
-	public int checkPick(String pick)
-	{
-		if(pick == enrolledOne)
-		{
-
-			return 1;
-		}
-		else
-		{
-			return 0;
+			JOptionPane.showMessageDialog(null, enrollResult);
 		}
 	}
 }
